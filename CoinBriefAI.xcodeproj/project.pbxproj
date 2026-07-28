@@ -1,0 +1,514 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		CB0000000000000000000101 /* CoinBriefAIWidget.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = CB0000000000000000000202 /* CoinBriefAIWidget.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, CodeSignOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		CB0000000000000000000301 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0000000000000000000999 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB0000000000000000000002;
+			remoteInfo = CoinBriefAIWidget;
+		};
+		CB0000000000000000000302 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0000000000000000000999 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB0000000000000000000001;
+			remoteInfo = CoinBriefAI;
+		};
+		CB0000000000000000000303 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CB0000000000000000000999 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CB0000000000000000000001;
+			remoteInfo = CoinBriefAI;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		CB0000000000000000000401 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				CB0000000000000000000101 /* CoinBriefAIWidget.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		CB0000000000000000000201 /* CoinBriefAI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoinBriefAI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0000000000000000000202 /* CoinBriefAIWidget.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = CoinBriefAIWidget.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0000000000000000000203 /* CoinBriefAITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinBriefAITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		CB0000000000000000000204 /* CoinBriefAIUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CoinBriefAIUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		CB0000000000000000000501 /* CoinBriefAI */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoinBriefAI; sourceTree = "<group>"; };
+		CB0000000000000000000502 /* CoinBriefAIWidget */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoinBriefAIWidget; sourceTree = "<group>"; };
+		CB0000000000000000000503 /* CoinBriefAITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoinBriefAITests; sourceTree = "<group>"; };
+		CB0000000000000000000504 /* CoinBriefAIUITests */ = {isa = PBXFileSystemSynchronizedRootGroup; explicitFileTypes = {}; explicitFolders = (); path = CoinBriefAIUITests; sourceTree = "<group>"; };
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		CB0000000000000000000601 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000602 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000603 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000604 /* Frameworks */ = {isa = PBXFrameworksBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		CB0000000000000000000701 = {
+			isa = PBXGroup;
+			children = (
+				CB0000000000000000000501 /* CoinBriefAI */,
+				CB0000000000000000000502 /* CoinBriefAIWidget */,
+				CB0000000000000000000503 /* CoinBriefAITests */,
+				CB0000000000000000000504 /* CoinBriefAIUITests */,
+				CB0000000000000000000702 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		CB0000000000000000000702 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CB0000000000000000000201 /* CoinBriefAI.app */,
+				CB0000000000000000000202 /* CoinBriefAIWidget.appex */,
+				CB0000000000000000000203 /* CoinBriefAITests.xctest */,
+				CB0000000000000000000204 /* CoinBriefAIUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		CB0000000000000000000001 /* CoinBriefAI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB0000000000000000000802 /* Build configuration list for PBXNativeTarget "CoinBriefAI" */;
+			buildPhases = (
+				CB0000000000000000000901 /* Sources */,
+				CB0000000000000000000601 /* Frameworks */,
+				CB0000000000000000000902 /* Resources */,
+				CB0000000000000000000401 /* Embed App Extensions */,
+			);
+			buildRules = ();
+			dependencies = (
+				CB0000000000000000000304 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB0000000000000000000501 /* CoinBriefAI */,
+			);
+			name = CoinBriefAI;
+			packageProductDependencies = ();
+			productName = CoinBriefAI;
+			productReference = CB0000000000000000000201 /* CoinBriefAI.app */;
+			productType = "com.apple.product-type.application";
+		};
+		CB0000000000000000000002 /* CoinBriefAIWidget */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB0000000000000000000803 /* Build configuration list for PBXNativeTarget "CoinBriefAIWidget" */;
+			buildPhases = (
+				CB0000000000000000000903 /* Sources */,
+				CB0000000000000000000602 /* Frameworks */,
+				CB0000000000000000000904 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = ();
+			fileSystemSynchronizedGroups = (
+				CB0000000000000000000502 /* CoinBriefAIWidget */,
+			);
+			name = CoinBriefAIWidget;
+			packageProductDependencies = ();
+			productName = CoinBriefAIWidget;
+			productReference = CB0000000000000000000202 /* CoinBriefAIWidget.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		CB0000000000000000000003 /* CoinBriefAITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB0000000000000000000804 /* Build configuration list for PBXNativeTarget "CoinBriefAITests" */;
+			buildPhases = (
+				CB0000000000000000000905 /* Sources */,
+				CB0000000000000000000603 /* Frameworks */,
+				CB0000000000000000000906 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = (
+				CB0000000000000000000305 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB0000000000000000000503 /* CoinBriefAITests */,
+			);
+			name = CoinBriefAITests;
+			packageProductDependencies = ();
+			productName = CoinBriefAITests;
+			productReference = CB0000000000000000000203 /* CoinBriefAITests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		CB0000000000000000000004 /* CoinBriefAIUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CB0000000000000000000805 /* Build configuration list for PBXNativeTarget "CoinBriefAIUITests" */;
+			buildPhases = (
+				CB0000000000000000000907 /* Sources */,
+				CB0000000000000000000604 /* Frameworks */,
+				CB0000000000000000000908 /* Resources */,
+			);
+			buildRules = ();
+			dependencies = (
+				CB0000000000000000000306 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				CB0000000000000000000504 /* CoinBriefAIUITests */,
+			);
+			name = CoinBriefAIUITests;
+			packageProductDependencies = ();
+			productName = CoinBriefAIUITests;
+			productReference = CB0000000000000000000204 /* CoinBriefAIUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		CB0000000000000000000999 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					CB0000000000000000000001 = {CreatedOnToolsVersion = 16.0; };
+					CB0000000000000000000002 = {CreatedOnToolsVersion = 16.0; };
+					CB0000000000000000000003 = {CreatedOnToolsVersion = 16.0; TestTargetID = CB0000000000000000000001; };
+					CB0000000000000000000004 = {CreatedOnToolsVersion = 16.0; TestTargetID = CB0000000000000000000001; };
+				};
+			};
+			buildConfigurationList = CB0000000000000000000801 /* Build configuration list for PBXProject "CoinBriefAI" */;
+			compatibilityVersion = "Xcode 16.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = CB0000000000000000000701;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = CB0000000000000000000702 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				CB0000000000000000000001 /* CoinBriefAI */,
+				CB0000000000000000000002 /* CoinBriefAIWidget */,
+				CB0000000000000000000003 /* CoinBriefAITests */,
+				CB0000000000000000000004 /* CoinBriefAIUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		CB0000000000000000000902 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000904 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000906 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000908 /* Resources */ = {isa = PBXResourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		CB0000000000000000000901 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000903 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000905 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+		CB0000000000000000000907 /* Sources */ = {isa = PBXSourcesBuildPhase; buildActionMask = 2147483647; files = (); runOnlyForDeploymentPostprocessing = 0; };
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CB0000000000000000000304 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = CB0000000000000000000002 /* CoinBriefAIWidget */; targetProxy = CB0000000000000000000301 /* PBXContainerItemProxy */; };
+		CB0000000000000000000305 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = CB0000000000000000000001 /* CoinBriefAI */; targetProxy = CB0000000000000000000302 /* PBXContainerItemProxy */; };
+		CB0000000000000000000306 /* PBXTargetDependency */ = {isa = PBXTargetDependency; target = CB0000000000000000000001 /* CoinBriefAI */; targetProxy = CB0000000000000000000303 /* PBXContainerItemProxy */; };
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		CB0000000000000000001001 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = ("DEBUG=1", "$(inherited)", );
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+			};
+			name = Debug;
+		};
+		CB0000000000000000001002 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB0000000000000000001101 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CoinBriefAI/CoinBriefAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CoinBriefAI/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", );
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app;
+				PRODUCT_NAME = CoinBriefAI;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB0000000000000000001102 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = CoinBriefAI/CoinBriefAI.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CoinBriefAI/Resources/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", );
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app;
+				PRODUCT_NAME = CoinBriefAI;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB0000000000000000001201 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = CoinBriefAIWidget/CoinBriefAIWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CoinBriefAIWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", );
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.widget;
+				PRODUCT_NAME = CoinBriefAIWidget;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		CB0000000000000000001202 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CODE_SIGN_ENTITLEMENTS = CoinBriefAIWidget/CoinBriefAIWidget.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = CoinBriefAIWidget/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = ("$(inherited)", "@executable_path/Frameworks", "@executable_path/../../Frameworks", );
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.widget;
+				PRODUCT_NAME = CoinBriefAIWidget;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		CB0000000000000000001301 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinBriefAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoinBriefAI";
+			};
+			name = Debug;
+		};
+		CB0000000000000000001302 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/CoinBriefAI.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/CoinBriefAI";
+			};
+			name = Release;
+		};
+		CB0000000000000000001401 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CoinBriefAI;
+			};
+			name = Debug;
+		};
+		CB0000000000000000001402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.CoinBriefAI.app.uitests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = CoinBriefAI;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		CB0000000000000000000801 /* Build configuration list for PBXProject "CoinBriefAI" */ = {isa = XCConfigurationList; buildConfigurations = (CB0000000000000000001001 /* Debug */, CB0000000000000000001002 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CB0000000000000000000802 /* Build configuration list for PBXNativeTarget "CoinBriefAI" */ = {isa = XCConfigurationList; buildConfigurations = (CB0000000000000000001101 /* Debug */, CB0000000000000000001102 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CB0000000000000000000803 /* Build configuration list for PBXNativeTarget "CoinBriefAIWidget" */ = {isa = XCConfigurationList; buildConfigurations = (CB0000000000000000001201 /* Debug */, CB0000000000000000001202 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CB0000000000000000000804 /* Build configuration list for PBXNativeTarget "CoinBriefAITests" */ = {isa = XCConfigurationList; buildConfigurations = (CB0000000000000000001301 /* Debug */, CB0000000000000000001302 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+		CB0000000000000000000805 /* Build configuration list for PBXNativeTarget "CoinBriefAIUITests" */ = {isa = XCConfigurationList; buildConfigurations = (CB0000000000000000001401 /* Debug */, CB0000000000000000001402 /* Release */, ); defaultConfigurationIsVisible = 0; defaultConfigurationName = Release; };
+/* End XCConfigurationList section */
+	};
+	rootObject = CB0000000000000000000999 /* Project object */;
+}
+

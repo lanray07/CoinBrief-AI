@@ -1,0 +1,74 @@
+{
+  "identifier" : "D96F9E44-8EAF-4C29-91B4-C403DB61E03D",
+  "nonRenewingSubscriptions" : [],
+  "products" : [],
+  "settings" : {
+    "_askToBuyEnabled" : false,
+    "_billingGracePeriodEnabled" : true,
+    "_failTransactionsEnabled" : false,
+    "_locale" : "en_GB",
+    "_storefront" : "GBR"
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "8A4F55E3-1CE6-49B4-9BC7-B223012D6E3E",
+      "localizations" : [
+        {
+          "description" : "Unlock unlimited source-backed crypto briefings, audio, offline access, custom alerts, and premium widgets.",
+          "displayName" : "CoinBrief AI Pro",
+          "locale" : "en_GB"
+        }
+      ],
+      "name" : "CoinBrief AI Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "4.99",
+          "familyShareable" : true,
+          "groupNumber" : 1,
+          "id" : "com.coinbriefai.pro.monthly",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Monthly access to Pro briefings and research tools.",
+              "displayName" : "Pro Monthly",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.coinbriefai.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "CoinBrief AI Pro Monthly",
+          "subscriptionGroupID" : "8A4F55E3-1CE6-49B4-9BC7-B223012D6E3E",
+          "type" : "Auto-Renewable Subscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "39.99",
+          "familyShareable" : true,
+          "groupNumber" : 2,
+          "id" : "com.coinbriefai.pro.annual",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Annual access to Pro briefings and research tools.",
+              "displayName" : "Pro Annual",
+              "locale" : "en_GB"
+            }
+          ],
+          "productID" : "com.coinbriefai.pro.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "CoinBrief AI Pro Annual",
+          "subscriptionGroupID" : "8A4F55E3-1CE6-49B4-9BC7-B223012D6E3E",
+          "type" : "Auto-Renewable Subscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 4,
+    "minor" : 0
+  }
+}
+
