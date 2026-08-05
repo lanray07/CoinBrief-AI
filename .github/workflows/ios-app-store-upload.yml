@@ -51,7 +51,12 @@ jobs:
           exit "$missing"
 
       - name: Install App Store Connect API dependencies
-        run: python3 -m pip install --user pyjwt cryptography
+        run: |
+          set -euo pipefail
+          python3 -m venv "$RUNNER_TEMP/asc-venv"
+          "$RUNNER_TEMP/asc-venv/bin/python" -m pip install --upgrade pip
+          "$RUNNER_TEMP/asc-venv/bin/python" -m pip install pyjwt cryptography
+          echo "ASC_PYTHON=$RUNNER_TEMP/asc-venv/bin/python" >> "$GITHUB_ENV"
 
       - name: Write App Store Connect API key
         run: |
@@ -75,7 +80,7 @@ jobs:
           if [ -n "${APPLE_TEAM_ID_SECRET:-}" ]; then
             APPLE_TEAM_ID="$APPLE_TEAM_ID_SECRET"
           else
-            APPLE_TEAM_ID="$(python3 .github/scripts/resolve_apple_team_id.py --bundle-id "$APP_BUNDLE_ID")"
+            APPLE_TEAM_ID="$("$ASC_PYTHON" .github/scripts/resolve_apple_team_id.py --bundle-id "$APP_BUNDLE_ID")"
           fi
           echo "::add-mask::$APPLE_TEAM_ID"
           echo "APPLE_TEAM_ID=$APPLE_TEAM_ID" >> "$GITHUB_ENV"
