@@ -1,0 +1,193 @@
+name: iOS App Store Upload
+
+on:
+  workflow_dispatch:
+    inputs:
+      marketing_version:
+        description: App Store version number
+        required: true
+        default: "1.0"
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ios-app-store-upload
+  cancel-in-progress: false
+
+jobs:
+  upload:
+    name: Archive and upload
+    runs-on: macos-15
+    timeout-minutes: 60
+    env:
+      APP_BUNDLE_ID: com.CoinBriefAI.app
+      APP_STORE_CONNECT_API_ISSUER_ID: ${{ secrets.APP_STORE_CONNECT_API_ISSUER_ID }}
+      APP_STORE_CONNECT_API_KEY_ID: ${{ secrets.APP_STORE_CONNECT_API_KEY_ID }}
+      APP_STORE_CONNECT_API_PRIVATE_KEY: ${{ secrets.APP_STORE_CONNECT_API_PRIVATE_KEY }}
+      APPLE_TEAM_ID_SECRET: ${{ secrets.APPLE_TEAM_ID }}
+      PROJECT_PATH: CoinBriefAI.xcodeproj
+      SCHEME: CoinBriefAI
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: |
+          set -euo pipefail
+          sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
+          xcodebuild -version
+
+      - name: Verify required App Store Connect secrets
+        run: |
+          set -euo pipefail
+          missing=0
+          for name in APP_STORE_CONNECT_API_ISSUER_ID APP_STORE_CONNECT_API_KEY_ID APP_STORE_CONNECT_API_PRIVATE_KEY; do
+            if [ -z "${!name:-}" ]; then
+              echo "::error::$name is required"
+              missing=1
+            fi
+          done
+          exit "$missing"
+
+      - name: Install App Store Connect API dependencies
+        run: python3 -m pip install --user pyjwt cryptography
+
+      - name: Write App Store Connect API key
+        run: |
+          set -euo pipefail
+          mkdir -p "$RUNNER_TEMP/private_keys"
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+
+          key_id = os.environ["APP_STORE_CONNECT_API_KEY_ID"]
+          raw_key = os.environ["APP_STORE_CONNECT_API_PRIVATE_KEY"].strip().replace("\\n", "\n")
+          key_path = Path(os.environ["RUNNER_TEMP"]) / "private_keys" / f"AuthKey_{key_id}.p8"
+          key_path.write_text(raw_key + "\n", encoding="utf-8")
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"ASC_KEY_PATH={key_path}\n")
+          PY
+
+      - name: Resolve Apple Developer Team ID
+        run: |
+          set -euo pipefail
+          if [ -n "${APPLE_TEAM_ID_SECRET:-}" ]; then
+            APPLE_TEAM_ID="$APPLE_TEAM_ID_SECRET"
+          else
+            APPLE_TEAM_ID="$(python3 .github/scripts/resolve_apple_team_id.py --bundle-id "$APP_BUNDLE_ID")"
+          fi
+          echo "::add-mask::$APPLE_TEAM_ID"
+          echo "APPLE_TEAM_ID=$APPLE_TEAM_ID" >> "$GITHUB_ENV"
+          echo "Resolved Apple Developer Team ID."
+
+      - name: List Xcode project
+        run: |
+          set -euo pipefail
+          xcodebuild -list -project "$PROJECT_PATH"
+
+      - name: Archive app
+        run: |
+          set -euo pipefail
+          BUILD_NUMBER="$(date -u +%Y%m%d%H%M)"
+          echo "BUILD_NUMBER=$BUILD_NUMBER" >> "$GITHUB_ENV"
+          xcodebuild \
+            -project "$PROJECT_PATH" \
+            -scheme "$SCHEME" \
+            -configuration Release \
+            -destination "generic/platform=iOS" \
+            -archivePath "$RUNNER_TEMP/CoinBriefAI.xcarchive" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" \
+            -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_API_ISSUER_ID" \
+            CODE_SIGN_STYLE=Automatic \
+            DEVELOPMENT_TEAM="$APPLE_TEAM_ID" \
+            MARKETING_VERSION="${{ inputs.marketing_version }}" \
+            CURRENT_PROJECT_VERSION="$BUILD_NUMBER" \
+            clean archive
+
+      - name: Create export options
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import os
+          import plistlib
+          from pathlib import Path
+
+          method = os.environ.get("EXPORT_METHOD", "app-store-connect")
+          options = {
+              "destination": "upload",
+              "manageAppVersionAndBuildNumber": False,
+              "method": method,
+              "signingStyle": "automatic",
+              "stripSwiftSymbols": True,
+              "teamID": os.environ["APPLE_TEAM_ID"],
+              "uploadSymbols": True,
+          }
+          path = Path(os.environ["RUNNER_TEMP"]) / "ExportOptions.plist"
+          with path.open("wb") as handle:
+              plistlib.dump(options, handle)
+          with open(os.environ["GITHUB_ENV"], "a", encoding="utf-8") as env:
+              env.write(f"EXPORT_OPTIONS_PATH={path}\n")
+          PY
+
+      - name: Upload archive to App Store Connect
+        run: |
+          set -euo pipefail
+          export_path="$RUNNER_TEMP/export"
+          mkdir -p "$export_path"
+          set +e
+          xcodebuild \
+            -exportArchive \
+            -archivePath "$RUNNER_TEMP/CoinBriefAI.xcarchive" \
+            -exportPath "$export_path" \
+            -exportOptionsPlist "$EXPORT_OPTIONS_PATH" \
+            -allowProvisioningUpdates \
+            -authenticationKeyPath "$ASC_KEY_PATH" \
+            -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
+            -authenticationKeyIssuerID "$APP_STORE_CONNECT_API_ISSUER_ID" \
+            2>&1 | tee "$RUNNER_TEMP/xcode-export.log"
+          status="${PIPESTATUS[0]}"
+          set -e
+          if [ "$status" -ne 0 ] && grep -q "app-store-connect" "$RUNNER_TEMP/xcode-export.log"; then
+            echo "Retrying export with legacy app-store method."
+            EXPORT_METHOD=app-store python3 - <<'PY'
+            import os
+            import plistlib
+
+            options = {
+                "destination": "upload",
+                "manageAppVersionAndBuildNumber": False,
+                "method": os.environ["EXPORT_METHOD"],
+                "signingStyle": "automatic",
+                "stripSwiftSymbols": True,
+                "teamID": os.environ["APPLE_TEAM_ID"],
+                "uploadSymbols": True,
+            }
+            with open(os.environ["EXPORT_OPTIONS_PATH"], "wb") as handle:
+                plistlib.dump(options, handle)
+            PY
+            xcodebuild \
+              -exportArchive \
+              -archivePath "$RUNNER_TEMP/CoinBriefAI.xcarchive" \
+              -exportPath "$export_path" \
+              -exportOptionsPlist "$EXPORT_OPTIONS_PATH" \
+              -allowProvisioningUpdates \
+              -authenticationKeyPath "$ASC_KEY_PATH" \
+              -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
+              -authenticationKeyIssuerID "$APP_STORE_CONNECT_API_ISSUER_ID"
+          elif [ "$status" -ne 0 ]; then
+            exit "$status"
+          fi
+          find "$export_path" -maxdepth 2 -type f -print || true
+
+      - name: Upload build diagnostics
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ios-upload-diagnostics-${{ github.run_id }}
+          path: |
+            ${{ runner.temp }}/xcode-export.log
+            ${{ runner.temp }}/ExportOptions.plist
+          if-no-files-found: ignore

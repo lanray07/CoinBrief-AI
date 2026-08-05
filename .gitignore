@@ -14,6 +14,10 @@ Package.resolved
 # macOS
 .DS_Store
 
+# Python helper caches
+__pycache__/
+*.pyc
+
 # App Store archives and exports
 *.xcarchive
 *.ipa
@@ -21,4 +25,3 @@ Package.resolved
 # Local environment
 .env
 .env.*
-

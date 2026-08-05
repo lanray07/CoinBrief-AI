@@ -23,7 +23,7 @@ xcodegen generate
 
 - App: `com.CoinBriefAI.app`
 - Widget extension: `com.CoinBriefAI.app.widget`
-- App group: `group.com.coinbriefai.shared`
+- Shared app group: not enabled in the first App Store upload because the current widget uses static demo content. Add `group.com.coinbriefai.shared` when shared app/widget storage is implemented and the App Group capability is enabled in Apple Developer.
 
 Before an App Store upload, set the Apple Developer Team ID and confirm the bundle identifiers match App Store Connect.
 
@@ -35,4 +35,3 @@ Before an App Store upload, set the Apple Developer Team ID and confirm the bund
 ## Launch Cautions
 
 Before submitting, replace demo news with licensed/contracted sources, complete App Store Connect privacy answers from actual SDK behavior, configure StoreKit products in App Store Connect, and have legal review the privacy policy, terms, source licenses, and financial-disclaimer language.
-
