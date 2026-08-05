@@ -18,7 +18,7 @@ concurrency:
 jobs:
   upload:
     name: Archive and upload
-    runs-on: macos-15
+    runs-on: macos-26
     timeout-minutes: 60
     env:
       APP_BUNDLE_ID: com.CoinBriefAI.app
@@ -37,6 +37,7 @@ jobs:
           set -euo pipefail
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           xcodebuild -version
+          xcrun --sdk iphoneos --show-sdk-version
 
       - name: Install XcodeGen
         run: brew install xcodegen
@@ -149,7 +150,6 @@ jobs:
           set -euo pipefail
           export_path="$RUNNER_TEMP/export"
           mkdir -p "$export_path"
-          set +e
           xcodebuild \
             -exportArchive \
             -archivePath "$RUNNER_TEMP/CoinBriefAI.xcarchive" \
@@ -160,38 +160,6 @@ jobs:
             -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
             -authenticationKeyIssuerID "$APP_STORE_CONNECT_API_ISSUER_ID" \
             2>&1 | tee "$RUNNER_TEMP/xcode-export.log"
-          status="${PIPESTATUS[0]}"
-          set -e
-          if [ "$status" -ne 0 ] && grep -q "app-store-connect" "$RUNNER_TEMP/xcode-export.log"; then
-            echo "Retrying export with legacy app-store method."
-            EXPORT_METHOD=app-store python3 - <<'PY'
-            import os
-            import plistlib
-
-            options = {
-                "destination": "upload",
-                "manageAppVersionAndBuildNumber": False,
-                "method": os.environ["EXPORT_METHOD"],
-                "signingStyle": "automatic",
-                "stripSwiftSymbols": True,
-                "teamID": os.environ["APPLE_TEAM_ID"],
-                "uploadSymbols": True,
-            }
-            with open(os.environ["EXPORT_OPTIONS_PATH"], "wb") as handle:
-                plistlib.dump(options, handle)
-            PY
-            xcodebuild \
-              -exportArchive \
-              -archivePath "$RUNNER_TEMP/CoinBriefAI.xcarchive" \
-              -exportPath "$export_path" \
-              -exportOptionsPlist "$EXPORT_OPTIONS_PATH" \
-              -allowProvisioningUpdates \
-              -authenticationKeyPath "$ASC_KEY_PATH" \
-              -authenticationKeyID "$APP_STORE_CONNECT_API_KEY_ID" \
-              -authenticationKeyIssuerID "$APP_STORE_CONNECT_API_ISSUER_ID"
-          elif [ "$status" -ne 0 ]; then
-            exit "$status"
-          fi
           find "$export_path" -maxdepth 2 -type f -print || true
 
       - name: Upload build diagnostics
