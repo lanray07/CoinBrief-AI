@@ -18,6 +18,9 @@ Package.resolved
 __pycache__/
 *.pyc
 
+# Local GitHub Actions diagnostics
+gh-run-*.log
+
 # App Store archives and exports
 *.xcarchive
 *.ipa

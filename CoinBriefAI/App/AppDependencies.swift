@@ -1,6 +1,6 @@
 import SwiftUI
 
-struct AppDependencies {
+struct AppDependencies: @unchecked Sendable {
     var newsService: any NewsService
     var watchlistService: any WatchlistService
     var subscriptionService: any SubscriptionServicing
@@ -28,4 +28,3 @@ extension EnvironmentValues {
         set { self[AppDependenciesKey.self] = newValue }
     }
 }
-
