@@ -14,9 +14,13 @@ targets:
     type: application
     platform: iOS
     sources:
-      - CoinBriefAI
+      - path: CoinBriefAI
+        excludes:
+          - Resources/Info.plist
     resources:
-      - CoinBriefAI/Resources
+      - path: CoinBriefAI/Resources
+        excludes:
+          - Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.CoinBriefAI.app
@@ -33,7 +37,9 @@ targets:
     type: app-extension
     platform: iOS
     sources:
-      - CoinBriefAIWidget
+      - path: CoinBriefAIWidget
+        excludes:
+          - Info.plist
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.CoinBriefAI.app.widget
@@ -55,4 +61,3 @@ targets:
       - CoinBriefAIUITests
     dependencies:
       - target: CoinBriefAI
-

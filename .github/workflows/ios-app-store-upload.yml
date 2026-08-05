@@ -38,6 +38,9 @@ jobs:
           sudo xcode-select -s /Applications/Xcode.app/Contents/Developer
           xcodebuild -version
 
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
       - name: Verify required App Store Connect secrets
         run: |
           set -euo pipefail
@@ -85,6 +88,9 @@ jobs:
           echo "::add-mask::$APPLE_TEAM_ID"
           echo "APPLE_TEAM_ID=$APPLE_TEAM_ID" >> "$GITHUB_ENV"
           echo "Resolved Apple Developer Team ID."
+
+      - name: Regenerate Xcode project
+        run: xcodegen generate
 
       - name: List Xcode project
         run: |
