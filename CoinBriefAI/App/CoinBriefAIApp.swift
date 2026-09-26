@@ -3,7 +3,7 @@ import SwiftUI
 
 @main
 struct CoinBriefAIApp: App {
-    private let dependencies = AppDependencies.preview
+    private let dependencies = AppDependencies.live
 
     var body: some Scene {
         WindowGroup {

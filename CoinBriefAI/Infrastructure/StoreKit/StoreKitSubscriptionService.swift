@@ -16,7 +16,11 @@ final class StoreKitSubscriptionService: SubscriptionServicing {
 
     func products() async throws -> [SubscriptionProduct] {
         let products = try await Product.products(for: productIDs)
-        return products.map { product in
+        return products.sorted { lhs, rhs in
+            let lhsIndex = productIDs.firstIndex(of: lhs.id) ?? Int.max
+            let rhsIndex = productIDs.firstIndex(of: rhs.id) ?? Int.max
+            return lhsIndex < rhsIndex
+        }.map { product in
             SubscriptionProduct(
                 id: product.id,
                 displayName: product.displayName,
@@ -31,12 +35,17 @@ final class StoreKitSubscriptionService: SubscriptionServicing {
         for await result in Transaction.currentEntitlements {
             guard case let .verified(transaction) = result else { continue }
             guard productIDs.contains(transaction.productID) else { continue }
+            guard transaction.revocationDate == nil else { continue }
+            guard transaction.expirationDate.map({ $0 > .now }) ?? true else { continue }
             return .pro(renewalDate: transaction.expirationDate)
         }
         return .free
     }
 
     func purchase(productID: String) async throws -> SubscriptionEntitlement {
+        guard productIDs.contains(productID) else {
+            throw SubscriptionError.productUnavailable
+        }
         guard let product = try await Product.products(for: [productID]).first else {
             throw SubscriptionError.productUnavailable
         }
@@ -46,7 +55,7 @@ final class StoreKitSubscriptionService: SubscriptionServicing {
         case .success(let verification):
             let transaction = try verified(verification)
             await transaction.finish()
-            return .pro(renewalDate: transaction.expirationDate)
+            return await currentEntitlement()
         case .pending:
             throw SubscriptionError.purchasePending
         case .userCancelled:

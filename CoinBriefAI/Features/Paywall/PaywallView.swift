@@ -22,6 +22,7 @@ final class PaywallViewModel: ObservableObject {
         do {
             products = try await subscriptionService.products()
             entitlement = await subscriptionService.currentEntitlement()
+            statusMessage = products.isEmpty ? "Subscriptions are temporarily unavailable." : nil
         } catch {
             statusMessage = "Products are unavailable. StoreKit must be configured in App Store Connect."
         }
@@ -34,9 +35,11 @@ final class PaywallViewModel: ObservableObject {
 
         do {
             entitlement = try await subscriptionService.purchase(productID: productID)
-            statusMessage = "Pro is active."
+            statusMessage = entitlement.isActive ? "Pro is active." : "Purchase is still being processed."
         } catch SubscriptionError.purchaseCancelled {
             statusMessage = "Purchase cancelled."
+        } catch SubscriptionError.purchasePending {
+            statusMessage = "Purchase is pending approval."
         } catch {
             statusMessage = "Purchase could not be completed."
         }
@@ -127,6 +130,12 @@ struct PaywallView: View {
                     .font(.footnote)
                     .foregroundStyle(.secondary)
                     .fixedSize(horizontal: false, vertical: true)
+
+                HStack(spacing: 16) {
+                    Link("Privacy Policy", destination: URL(string: "https://github.com/lanray07/CoinBrief-AI/blob/main/PRIVACY.md")!)
+                    Link("Terms of Use", destination: URL(string: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/")!)
+                }
+                .font(.footnote.weight(.semibold))
             }
             .padding(16)
         }

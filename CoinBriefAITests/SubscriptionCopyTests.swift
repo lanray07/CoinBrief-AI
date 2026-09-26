@@ -2,6 +2,11 @@ import XCTest
 @testable import CoinBriefAI
 
 final class SubscriptionCopyTests: XCTestCase {
+    func testShippingDependenciesUseStoreKit() {
+        XCTAssertTrue(AppDependencies.live.subscriptionService is StoreKitSubscriptionService)
+        XCTAssertTrue(AppDependencies.preview.subscriptionService is MockSubscriptionService)
+    }
+
     func testProCapabilitiesMatchProductBrief() {
         let capabilities = Set(ProCapability.allCases.map(\.label))
 
