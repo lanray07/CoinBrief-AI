@@ -54,8 +54,15 @@ final class StoreKitSubscriptionService: SubscriptionServicing {
         switch result {
         case .success(let verification):
             let transaction = try verified(verification)
+            guard transaction.productID == productID,
+                  transaction.revocationDate == nil,
+                  transaction.expirationDate.map({ $0 > .now }) ?? true else {
+                throw SubscriptionError.failedVerification
+            }
+
+            let entitlement = SubscriptionEntitlement.pro(renewalDate: transaction.expirationDate)
             await transaction.finish()
-            return await currentEntitlement()
+            return entitlement
         case .pending:
             throw SubscriptionError.purchasePending
         case .userCancelled:
