@@ -11,7 +11,7 @@ struct StorySearchFilter: Hashable, Sendable {
 enum StorySort: String, CaseIterable, Identifiable, Hashable, Sendable {
     case recent
     case importance
-    case watchlist
+    case tagged
     case sourceCount
 
     var id: String { rawValue }
@@ -20,7 +20,7 @@ enum StorySort: String, CaseIterable, Identifiable, Hashable, Sendable {
         switch self {
         case .recent: "Recent"
         case .importance: "Importance"
-        case .watchlist: "Watchlist"
+        case .tagged: "Tagged"
         case .sourceCount: "Sources"
         }
     }
@@ -32,11 +32,11 @@ protocol NewsService: Sendable {
     func story(id: String) async throws -> BriefStory
 }
 
-protocol WatchlistService: Sendable {
-    func watchlist() async throws -> [WatchlistItem]
-    func add(_ item: WatchlistItem) async throws
-    func update(_ item: WatchlistItem) async throws
-    func remove(id: UUID) async throws
+protocol SourceLibraryServicing: Sendable {
+    func sources() async -> [FeedSource]
+    func add(feedURL: URL) async throws -> FeedSource
+    func setEnabled(_ isEnabled: Bool, id: String) async throws
+    func remove(id: String) async throws
 }
 
 protocol SubscriptionServicing: Sendable {
@@ -51,10 +51,6 @@ protocol NotificationScheduling: Sendable {
     func rules() async -> [NotificationRule]
     func update(rule: NotificationRule) async throws
     func scheduleDigest(rule: NotificationRule) async throws
-}
-
-protocol AudioBriefingServicing: Sendable {
-    func makeBriefing(from stories: [BriefStory], preferences: UserPreferences) async throws -> AudioBriefing
 }
 
 protocol SecureTokenStoring: Sendable {

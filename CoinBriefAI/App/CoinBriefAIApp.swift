@@ -12,7 +12,6 @@ struct CoinBriefAIApp: App {
         }
         .modelContainer(for: [
             SavedStoryRecord.self,
-            WatchlistRecord.self,
             ReadingHistoryRecord.self,
             UserNoteRecord.self
         ])

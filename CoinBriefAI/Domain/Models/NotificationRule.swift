@@ -3,7 +3,7 @@ import Foundation
 enum NotificationReason: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
     case morningBrief
     case eveningBrief
-    case watchlistBreaking
+    case sourceUpdate
     case securityAlert
     case narrativeShift
 
@@ -13,7 +13,7 @@ enum NotificationReason: String, Codable, CaseIterable, Identifiable, Hashable, 
         switch self {
         case .morningBrief: "Morning brief"
         case .eveningBrief: "Evening brief"
-        case .watchlistBreaking: "Watchlist breaking"
+        case .sourceUpdate: "Source update"
         case .securityAlert: "Security alerts"
         case .narrativeShift: "Narrative shifts"
         }
@@ -31,7 +31,7 @@ struct NotificationRule: Identifiable, Codable, Hashable, Sendable {
     static let defaults: [NotificationRule] = [
         NotificationRule(id: UUID(), reason: .morningBrief, isEnabled: true, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 1),
         NotificationRule(id: UUID(), reason: .eveningBrief, isEnabled: true, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 1),
-        NotificationRule(id: UUID(), reason: .watchlistBreaking, isEnabled: true, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 3),
+        NotificationRule(id: UUID(), reason: .sourceUpdate, isEnabled: true, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 3),
         NotificationRule(id: UUID(), reason: .securityAlert, isEnabled: true, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 4),
         NotificationRule(id: UUID(), reason: .narrativeShift, isEnabled: false, quietHoursStart: 22, quietHoursEnd: 7, frequencyCapPerDay: 2)
     ]

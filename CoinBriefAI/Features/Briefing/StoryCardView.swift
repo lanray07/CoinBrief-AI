@@ -47,10 +47,10 @@ struct StoryCardView: View {
                 Label("\(story.sourceCount) source\(story.sourceCount == 1 ? "" : "s")", systemImage: "link")
                 Label("\(story.readingMinutes) min", systemImage: "clock")
                 Spacer()
-                if story.isWatchlistMatch {
+                if !story.assetTags.isEmpty {
                     Image(systemName: "star.fill")
                         .foregroundStyle(CoinBriefTheme.amber)
-                        .accessibilityLabel("Matches your watchlist")
+                        .accessibilityLabel("Automatically tagged")
                 }
                 if let url = story.primaryURL {
                     ShareLink(item: url) {
@@ -69,9 +69,11 @@ struct StoryCardView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     StoryCardView(story: MockNewsService.demoStories[0])
         .padding()
         .background(CoinBriefTheme.background)
 }
+#endif
 

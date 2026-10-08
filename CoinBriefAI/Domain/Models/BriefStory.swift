@@ -105,6 +105,7 @@ enum SourceLicense: String, Codable, Hashable, Sendable {
     case licensed
     case official
     case publicRecord
+    case syndicated
     case demo
 
     var label: String {
@@ -112,6 +113,7 @@ enum SourceLicense: String, Codable, Hashable, Sendable {
         case .licensed: "Licensed source"
         case .official: "Official source"
         case .publicRecord: "Public record"
+        case .syndicated: "Syndicated feed"
         case .demo: "Demo source"
         }
     }

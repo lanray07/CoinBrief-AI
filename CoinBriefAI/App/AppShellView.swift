@@ -38,9 +38,9 @@ struct AppShellView: View {
                 .tabItem { Label(AppTab.discover.title, systemImage: AppTab.discover.systemImage) }
                 .tag(AppTab.discover)
 
-            WatchlistView()
-                .tabItem { Label(AppTab.watchlist.title, systemImage: AppTab.watchlist.systemImage) }
-                .tag(AppTab.watchlist)
+            SourcesView()
+                .tabItem { Label(AppTab.sources.title, systemImage: AppTab.sources.systemImage) }
+                .tag(AppTab.sources)
 
             SavedView()
                 .tabItem { Label(AppTab.saved.title, systemImage: AppTab.saved.systemImage) }
@@ -54,8 +54,10 @@ struct AppShellView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     RootView()
         .environment(\.appDependencies, .preview)
 }
+#endif
 

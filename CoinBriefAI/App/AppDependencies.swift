@@ -2,29 +2,28 @@ import SwiftUI
 
 struct AppDependencies: @unchecked Sendable {
     var newsService: any NewsService
-    var watchlistService: any WatchlistService
+    var sourceLibrary: any SourceLibraryServicing
     var subscriptionService: any SubscriptionServicing
     var notificationService: any NotificationScheduling
-    var audioBriefingService: any AudioBriefingServicing
     var secureTokenStore: any SecureTokenStoring
 
     static let live = AppDependencies(
-        newsService: MockNewsService(),
-        watchlistService: MockWatchlistService(),
+        newsService: LiveNewsService(),
+        sourceLibrary: SourceStore.shared,
         subscriptionService: StoreKitSubscriptionService(),
         notificationService: LocalNotificationScheduler(),
-        audioBriefingService: MockAudioBriefingService(),
         secureTokenStore: KeychainTokenStore(service: "com.CoinBriefAI.app")
     )
 
+    #if DEBUG
     static let preview = AppDependencies(
         newsService: MockNewsService(),
-        watchlistService: MockWatchlistService(),
+        sourceLibrary: SourceStore.shared,
         subscriptionService: MockSubscriptionService(),
         notificationService: LocalNotificationScheduler(),
-        audioBriefingService: MockAudioBriefingService(),
         secureTokenStore: KeychainTokenStore(service: "com.CoinBriefAI.app")
     )
+    #endif
 }
 
 private struct AppDependenciesKey: EnvironmentKey {

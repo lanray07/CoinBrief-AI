@@ -8,7 +8,7 @@ CoinBrief AI is an informational crypto and blockchain news research app. It doe
 
 The current App Store release of CoinBrief AI does not collect personal data from the app.
 
-CoinBrief AI stores app preferences and saved in-app state locally on your device. This may include watchlist choices, notification preferences, saved articles, display settings, onboarding state, and subscription-related app state. This local information is used only to operate the app experience on your device.
+CoinBrief AI stores app preferences and saved in-app state locally on your device. This may include enabled source feeds, custom feed URLs, notification preferences, saved reports, cached feed excerpts, onboarding state, and subscription-related app state. This local information is used only to operate the app experience on your device.
 
 ## Subscriptions And Purchases
 
@@ -28,7 +28,7 @@ The app or its App Store listing may link to external pages such as the public G
 
 ## Changes
 
-If CoinBrief AI adds accounts, cloud sync, analytics, diagnostics, backend services, or other features that collect data, this policy and the App Store privacy disclosures will be updated before those features are submitted for review.
+When the app refreshes a feed or opens an original report, the publisher receives ordinary network request information such as the device IP address and user agent under that publisher's privacy policy. If CoinBrief AI later adds accounts, cloud sync, analytics, diagnostics, or a backend that collects data, this policy and the App Store privacy disclosures will be updated before those features are submitted for review.
 
 ## Contact
 

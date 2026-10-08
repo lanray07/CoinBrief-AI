@@ -6,8 +6,7 @@ struct SavedView: View {
     @State private var selectedCollection = "All"
 
     private var snapshots: [SavedStorySnapshot] {
-        let stored = savedRecords.map(SavedStorySnapshot.init(record:))
-        return stored.isEmpty ? SavedPreviewData.snapshots : stored
+        savedRecords.map(SavedStorySnapshot.init(record:))
     }
 
     private var collections: [String] {
@@ -64,6 +63,7 @@ private struct SavedStorySnapshot: Identifiable, Hashable {
     let headline: String
     let summary: String
     let sourceDomain: String
+    let sourceURL: URL?
     let savedAt: Date
     let tags: [String]
     let note: String
@@ -74,47 +74,24 @@ private struct SavedStorySnapshot: Identifiable, Hashable {
         headline = record.headline
         summary = record.summary
         sourceDomain = record.sourceDomain
+        sourceURL = URL(string: record.sourceURL)
         savedAt = record.savedAt
         tags = record.tags
         note = record.note
         isAvailableOffline = record.isAvailableOffline
     }
 
-    init(id: String, headline: String, summary: String, sourceDomain: String, savedAt: Date, tags: [String], note: String, isAvailableOffline: Bool) {
+    init(id: String, headline: String, summary: String, sourceDomain: String, sourceURL: URL?, savedAt: Date, tags: [String], note: String, isAvailableOffline: Bool) {
         self.id = id
         self.headline = headline
         self.summary = summary
         self.sourceDomain = sourceDomain
+        self.sourceURL = sourceURL
         self.savedAt = savedAt
         self.tags = tags
         self.note = note
         self.isAvailableOffline = isAvailableOffline
     }
-}
-
-private enum SavedPreviewData {
-    static let snapshots = [
-        SavedStorySnapshot(
-            id: "saved-policy",
-            headline: "Stablecoin disclosure consultation puts reserves in focus",
-            summary: "Saved demo story with policy tag and offline availability.",
-            sourceDomain: "example.org",
-            savedAt: .now.addingTimeInterval(-3_600),
-            tags: ["Policy", "Offline"],
-            note: "Review reserve-disclosure proposal after final source update.",
-            isAvailableOffline: true
-        ),
-        SavedStorySnapshot(
-            id: "saved-security",
-            headline: "Security researchers flag multi-chain wallet-drainer campaign",
-            summary: "Saved demo story with security context and source checks.",
-            sourceDomain: "example.security",
-            savedAt: .now.addingTimeInterval(-9_000),
-            tags: ["Security"],
-            note: "Useful for Trust Centre security explainer.",
-            isAvailableOffline: false
-        )
-    ]
 }
 
 private struct SavedStoryRow: View {
@@ -155,6 +132,12 @@ private struct SavedStoryRow: View {
                         .background(CoinBriefTheme.violet.opacity(0.12), in: RoundedRectangle(cornerRadius: 8))
                 }
                 Spacer()
+                if let sourceURL = snapshot.sourceURL {
+                    Link(destination: sourceURL) {
+                        Image(systemName: "safari")
+                            .accessibilityLabel("Open original source")
+                    }
+                }
                 ShareLink(item: "CoinBrief AI saved summary: \(snapshot.headline)\n\(snapshot.summary)\nSource: \(snapshot.sourceDomain)") {
                     Image(systemName: "square.and.arrow.up")
                         .accessibilityLabel("Export saved summary")

@@ -35,19 +35,9 @@ struct OpenBriefingIntent: AppIntent {
     }
 }
 
-struct OpenWatchlistIntent: AppIntent {
-    static let title: LocalizedStringResource = "Open Watchlist"
-    static let description = IntentDescription("Open followed crypto assets, protocols, sectors, and regulatory topics.")
-    static let openAppWhenRun = true
-
-    func perform() async throws -> some IntentResult {
-        .result()
-    }
-}
-
-struct StartAudioBriefingIntent: AppIntent {
-    static let title: LocalizedStringResource = "Start Audio Briefing"
-    static let description = IntentDescription("Open the transcript-first daily audio briefing.")
+struct OpenSourcesIntent: AppIntent {
+    static let title: LocalizedStringResource = "Open Sources"
+    static let description = IntentDescription("Open the evidence source library.")
     static let openAppWhenRun = true
 
     func perform() async throws -> some IntentResult {
@@ -68,23 +58,13 @@ struct CoinBriefShortcutsProvider: AppShortcutsProvider {
         )
 
         AppShortcut(
-            intent: OpenWatchlistIntent(),
+            intent: OpenSourcesIntent(),
             phrases: [
-                "Open \(.applicationName) watchlist",
-                "Show my \(.applicationName) watchlist"
+                "Open \(.applicationName) sources",
+                "Show my \(.applicationName) source library"
             ],
-            shortTitle: "Watchlist",
-            systemImageName: "star"
-        )
-
-        AppShortcut(
-            intent: StartAudioBriefingIntent(),
-            phrases: [
-                "Start \(.applicationName) audio",
-                "Play my \(.applicationName) briefing"
-            ],
-            shortTitle: "Audio",
-            systemImageName: "headphones"
+            shortTitle: "Sources",
+            systemImageName: "link"
         )
     }
 }

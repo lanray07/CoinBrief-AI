@@ -1,5 +1,7 @@
 import Foundation
 
+#if DEBUG
+
 actor MockSubscriptionService: SubscriptionServicing {
     private var entitlement: SubscriptionEntitlement = .free
 
@@ -23,4 +25,5 @@ actor MockSubscriptionService: SubscriptionServicing {
         entitlement
     }
 }
+#endif
 

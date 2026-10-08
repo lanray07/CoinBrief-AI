@@ -35,12 +35,11 @@ struct ProfileView: View {
 
                     VStack(spacing: 10) {
                         SettingsLinkRow(title: "CoinBrief AI Pro", subtitle: "Manage subscription and restore purchases.", systemImage: "sparkles", destination: PaywallView())
-                        SettingsLinkRow(title: "Trust Centre", subtitle: "Source policy, verification labels, and AI limits.", systemImage: "checkmark.seal", destination: TrustCentreView())
+                        SettingsLinkRow(title: "Source Library", subtitle: "Manage first-party, public-record, and custom feeds.", systemImage: "link", destination: SourcesView())
+                        SettingsLinkRow(title: "Trust Centre", subtitle: "Source policy, evidence labels, and automation limits.", systemImage: "checkmark.seal", destination: TrustCentreView())
                         SettingsLinkRow(title: "Notifications", subtitle: "Quiet hours, reasons, and frequency caps.", systemImage: "bell", destination: NotificationSettingsView())
                         SettingsLinkRow(title: "Legal and Safety", subtitle: "Research-only terms and disclaimer.", systemImage: "doc.text", destination: LegalDisclosureView())
                     }
-
-                    AudioBriefingPreview()
 
                     AccountPrivacyPanel()
                 }
@@ -101,7 +100,7 @@ private struct SubscriptionSummary: View {
                 }
             }
 
-            Text(entitlement.isActive ? "Unlimited summaries, deeper modes, audio, offline access, custom alerts, and premium widgets are available." : "Free includes limited summaries, basic search, 5 watchlist items, limited bookmarks, and Quick Scan.")
+            Text(entitlement.isActive ? "Custom sources, Deep Dive mode, and the expanded source desk are available." : "Free includes the built-in evidence sources, standard briefings, search, and saved research.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
@@ -146,38 +145,14 @@ private struct SettingsLinkRow<Destination: View>: View {
     }
 }
 
-private struct AudioBriefingPreview: View {
-    var body: some View {
-        VStack(alignment: .leading, spacing: 12) {
-            SectionHeader(title: "Audio Briefing", subtitle: "Transcript-first audio with chapters and sources.", systemImage: "headphones")
-
-            HStack {
-                Label("Morning recap", systemImage: "play.circle.fill")
-                    .font(.headline)
-                Spacer()
-                Text("3:45")
-                    .font(.caption.weight(.semibold))
-                    .foregroundStyle(.secondary)
-            }
-
-            Text("Background playback, lock-screen controls, transcript, chapters, and offline storage are planned for the production audio service. Voices must be original and must not imitate real people.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-                .fixedSize(horizontal: false, vertical: true)
-        }
-        .padding(16)
-        .coinCard()
-    }
-}
-
 private struct AccountPrivacyPanel: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             SectionHeader(title: "Account And Privacy", subtitle: "User control points for launch readiness.", systemImage: "person.badge.shield.checkmark")
 
             Label("Export or delete saved data", systemImage: "square.and.arrow.down")
-            Label("Manage watchlist personalization", systemImage: "slider.horizontal.3")
-            Label("No tracking identifiers in the intended launch scope", systemImage: "hand.raised")
+            Label("Manage enabled evidence sources", systemImage: "slider.horizontal.3")
+            Label("No advertising or tracking identifiers", systemImage: "hand.raised")
         }
         .font(.subheadline)
         .padding(16)
@@ -211,8 +186,10 @@ struct LegalDisclosureView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     ProfileView()
         .environment(\.appDependencies, .preview)
 }
+#endif
 

@@ -13,27 +13,17 @@ enum SubscriptionTier: String, Codable, Hashable, Sendable {
 }
 
 enum ProCapability: String, Codable, CaseIterable, Identifiable, Hashable, Sendable {
-    case unlimitedSummaries
-    case personalFeed
-    case unlimitedWatchlist
+    case customSources
     case deepDive
-    case audioBriefings
-    case offline
-    case customAlerts
-    case premiumWidgets
+    case extendedSourceDesk
 
     var id: String { rawValue }
 
     var label: String {
         switch self {
-        case .unlimitedSummaries: "Unlimited summaries"
-        case .personalFeed: "Personal feed"
-        case .unlimitedWatchlist: "Unlimited watchlist"
-        case .deepDive: "Standard and Deep Dive modes"
-        case .audioBriefings: "Audio briefings"
-        case .offline: "Offline reading"
-        case .customAlerts: "Custom alerts"
-        case .premiumWidgets: "Premium widgets"
+        case .customSources: "Add custom RSS and Atom sources"
+        case .deepDive: "Deep Dive brief mode"
+        case .extendedSourceDesk: "Expanded source desk and research queue"
         }
     }
 }

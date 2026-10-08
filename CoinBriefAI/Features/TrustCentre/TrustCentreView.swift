@@ -20,9 +20,9 @@ struct TrustCentreView: View {
                 )
 
                 TrustPanel(
-                    title: "AI limitations",
+                    title: "Automation limits",
                     systemImage: "brain.head.profile",
-                    bodyText: "AI can compress source material, but it can miss nuance. CoinBrief AI should be treated as a research starting point, not a decision engine."
+                    bodyText: "Automated extraction and classification can miss nuance. CoinBrief is a research starting point, so each report keeps a direct link to the original source."
                 )
 
                 TrustPanel(
@@ -34,7 +34,7 @@ struct TrustCentreView: View {
                 TrustPanel(
                     title: "Privacy posture",
                     systemImage: "hand.raised",
-                    bodyText: "The intended launch version avoids tracking and advertising identifiers. App Store privacy answers must be updated to match the final backend and SDK stack."
+                    bodyText: "Source preferences and cached reports stay on this device. CoinBrief does not include advertising identifiers or third-party tracking SDKs."
                 )
             }
             .padding(16)

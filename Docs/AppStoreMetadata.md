@@ -6,43 +6,42 @@ CoinBrief AI
 
 ## Subtitle
 
-AI Crypto Market Briefs
+Your Verifiable Crypto Source Desk
 
 ## Promotional Text
 
-AI-powered crypto briefs, market summaries and coin insights for faster daily research. Informational only, not financial advice.
+Build a live crypto research desk from sources you control. Every brief preserves its publisher, timestamp and original link.
 
 ## Description
 
-CoinBrief AI turns noisy crypto and blockchain headlines into clear, source-backed daily briefings.
+CoinBrief AI is a source-controlled research reader for crypto protocols, security updates and digital-asset regulation.
 
-Use it to follow the stories behind Bitcoin, Ethereum, DeFi, exchanges, regulation, security incidents, protocols, companies, and market narratives. Every summary is designed to help you understand what happened, why it matters, and which original sources support the brief.
+Instead of presenting an anonymous stream of headlines, CoinBrief builds a personal evidence desk from RSS and Atom sources you choose. Every report keeps the publisher, original URL, publication time and source classification visible so you can verify the material yourself.
 
 Features:
 
-- Morning and evening five-minute crypto briefings
-- Source-backed AI summaries
-- Watchlists for assets, protocols, sectors, exchanges, companies, and regulatory topics
-- Story verification context and source links
-- Saved stories, notes, tags, and reading history
-- Optional Pro tools for deeper explainers, audio briefings, custom alerts, offline access, and advanced filters
+- Live reports from enabled official, public-record and research feeds
+- A source library with per-feed controls and custom RSS/Atom support
+- Automatic topic and risk classification without trading recommendations
+- Evidence records with publisher, timestamp and original source link
+- Search and filtering across the current source desk
+- Saved research with offline excerpts and direct source reopening
+- Quick Scan, Standard and Pro Deep Dive briefing modes
 
-CoinBrief AI is for news, education, and research only. It does not provide financial advice, trading signals, price predictions, portfolio management, brokerage, custody, exchange, lending, or staking services.
+CoinBrief AI is an informational research and productivity tool. It does not provide financial advice, investment recommendations, trading signals, brokerage services, exchange services, custody, wallet services or guarantees of performance. Cryptocurrency markets are volatile. Always inspect original sources and consult a qualified financial professional before making investment decisions.
 
-Terms: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
+Terms of Use: https://www.apple.com/legal/internet-services/itunes/dev/stdeula/
 Support: https://github.com/lanray07/CoinBrief-AI/issues
 
 ## Keywords
 
-crypto,bitcoin,ethereum,coin tracker,market alerts,blockchain,AI brief,DeFi,web3,finance
+crypto research,RSS reader,bitcoin,ethereum,blockchain,regulation,security,source tracker,DeFi
 
 ## Screenshot Captions
 
-1. Crypto news without the noise
-2. Understand the market in five minutes
-3. Every summary backed by real sources
-4. Follow the assets and stories that matter
-5. Turn breaking news into clear context
-6. Listen to your personalised daily briefing
-7. Stay informed, not overwhelmed
-
+1. Build your crypto evidence desk
+2. Read live reports from sources you control
+3. Verify every brief at the original source
+4. Manage official, public-record and custom feeds
+5. Search protocol, security and policy updates
+6. Save research with its evidence attached

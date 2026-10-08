@@ -6,12 +6,21 @@ final class BriefingViewModel: ObservableObject {
     @Published var state: LoadableState<Briefing> = .idle
     @Published var selectedMode: SummaryMode = .standard
     @Published var edition: BriefingEdition = .morning
+    @Published var entitlement: SubscriptionEntitlement = .free
 
     private var newsService: (any NewsService)?
+    private var subscriptionService: (any SubscriptionServicing)?
 
-    func configure(newsService: any NewsService) {
+    var availableModes: [SummaryMode] {
+        entitlement.isActive ? SummaryMode.allCases : [.quickScan, .standard]
+    }
+
+    func configure(newsService: any NewsService, subscriptionService: any SubscriptionServicing) {
         if self.newsService == nil {
             self.newsService = newsService
+        }
+        if self.subscriptionService == nil {
+            self.subscriptionService = subscriptionService
         }
     }
 
@@ -25,7 +34,13 @@ final class BriefingViewModel: ObservableObject {
         state = .loading
 
         do {
-            var preferences = UserPreferences.demo
+            if let subscriptionService {
+                entitlement = await subscriptionService.currentEntitlement()
+            }
+            if selectedMode == .deepDive, !entitlement.isActive {
+                selectedMode = .standard
+            }
+            var preferences = UserPreferences.standard
             preferences.summaryMode = selectedMode
             state = .loaded(try await newsService.fetchBriefing(preferences: preferences, edition: edition))
         } catch {
@@ -45,6 +60,7 @@ struct BriefingView: View {
                     BriefingHeaderView(
                         selectedMode: $viewModel.selectedMode,
                         edition: $viewModel.edition,
+                        availableModes: viewModel.availableModes,
                         onRefresh: { Task { await viewModel.load(force: true) } }
                     )
 
@@ -60,7 +76,10 @@ struct BriefingView: View {
                 StoryDetailView(story: story)
             }
             .task {
-                viewModel.configure(newsService: dependencies.newsService)
+                viewModel.configure(
+                    newsService: dependencies.newsService,
+                    subscriptionService: dependencies.subscriptionService
+                )
                 await viewModel.load()
             }
             .onChange(of: viewModel.selectedMode) { _, _ in
@@ -91,6 +110,7 @@ struct BriefingView: View {
 private struct BriefingHeaderView: View {
     @Binding var selectedMode: SummaryMode
     @Binding var edition: BriefingEdition
+    let availableModes: [SummaryMode]
     let onRefresh: () -> Void
 
     var body: some View {
@@ -125,7 +145,7 @@ private struct BriefingHeaderView: View {
             .pickerStyle(.segmented)
 
             Picker("Summary mode", selection: $selectedMode) {
-                ForEach(SummaryMode.allCases) { mode in
+                ForEach(availableModes) { mode in
                     Text(mode.label).tag(mode)
                 }
             }
@@ -183,8 +203,10 @@ private struct BriefingContentView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     BriefingView()
         .environment(\.appDependencies, .preview)
 }
+#endif
 

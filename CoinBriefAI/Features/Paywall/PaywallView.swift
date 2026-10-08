@@ -149,10 +149,12 @@ struct PaywallView: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         PaywallView()
             .environment(\.appDependencies, .preview)
     }
 }
+#endif
 

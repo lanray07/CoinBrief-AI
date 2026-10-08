@@ -30,23 +30,6 @@ targets:
         TARGETED_DEVICE_FAMILY: "1,2"
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
         ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
-    dependencies:
-      - target: CoinBriefAIWidget
-        embed: true
-  CoinBriefAIWidget:
-    type: app-extension
-    platform: iOS
-    sources:
-      - path: CoinBriefAIWidget
-        excludes:
-          - Info.plist
-    settings:
-      base:
-        PRODUCT_BUNDLE_IDENTIFIER: com.CoinBriefAI.app.widget
-        PRODUCT_NAME: CoinBriefAIWidget
-        INFOPLIST_FILE: CoinBriefAIWidget/Info.plist
-        CODE_SIGN_ENTITLEMENTS: CoinBriefAIWidget/CoinBriefAIWidget.entitlements
-        APPLICATION_EXTENSION_API_ONLY: YES
   CoinBriefAITests:
     type: bundle.unit-test
     platform: iOS

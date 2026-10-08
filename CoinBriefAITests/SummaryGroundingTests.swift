@@ -4,7 +4,7 @@ import XCTest
 final class SummaryGroundingTests: XCTestCase {
     func testEveryDemoStoryHasAtLeastOneSource() async throws {
         let service = MockNewsService()
-        let briefing = try await service.fetchBriefing(preferences: .demo, edition: .morning)
+        let briefing = try await service.fetchBriefing(preferences: .standard, edition: .morning)
         let stories = briefing.sections.flatMap(\.stories)
 
         XCTAssertFalse(stories.isEmpty)

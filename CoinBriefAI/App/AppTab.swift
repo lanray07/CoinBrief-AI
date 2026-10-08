@@ -3,7 +3,7 @@ import SwiftUI
 enum AppTab: String, CaseIterable, Identifiable {
     case briefing
     case discover
-    case watchlist
+    case sources
     case saved
     case profile
 
@@ -13,7 +13,7 @@ enum AppTab: String, CaseIterable, Identifiable {
         switch self {
         case .briefing: "Briefing"
         case .discover: "Discover"
-        case .watchlist: "Watchlist"
+        case .sources: "Sources"
         case .saved: "Saved"
         case .profile: "Profile"
         }
@@ -23,7 +23,7 @@ enum AppTab: String, CaseIterable, Identifiable {
         switch self {
         case .briefing: "newspaper"
         case .discover: "magnifyingglass"
-        case .watchlist: "star"
+        case .sources: "link"
         case .saved: "bookmark"
         case .profile: "person.crop.circle"
         }

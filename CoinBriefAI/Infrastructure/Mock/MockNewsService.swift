@@ -1,5 +1,7 @@
 import Foundation
 
+#if DEBUG
+
 struct MockNewsService: NewsService {
     func fetchBriefing(preferences: UserPreferences, edition: BriefingEdition) async throws -> Briefing {
         try await Task.sleep(nanoseconds: 250_000_000)
@@ -75,7 +77,7 @@ struct MockNewsService: NewsService {
         case .importance:
             let order: [ImportanceLevel: Int] = [.critical: 0, .high: 1, .notable: 2, .routine: 3]
             stories.sort { (order[$0.importance] ?? 9) < (order[$1.importance] ?? 9) }
-        case .watchlist:
+        case .tagged:
             stories.sort { ($0.isWatchlistMatch ? 0 : 1) < ($1.isWatchlistMatch ? 0 : 1) }
         case .sourceCount:
             stories.sort { $0.sourceCount > $1.sourceCount }
@@ -253,4 +255,5 @@ extension MockNewsService {
 enum MockServiceError: Error {
     case notFound
 }
+#endif
 

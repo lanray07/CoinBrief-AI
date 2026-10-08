@@ -7,6 +7,7 @@ final class SavedStoryRecord {
     var headline: String
     var summary: String
     var sourceDomain: String
+    var sourceURL: String = ""
     var savedAt: Date
     var tags: [String]
     var note: String
@@ -17,6 +18,7 @@ final class SavedStoryRecord {
         headline: String,
         summary: String,
         sourceDomain: String,
+        sourceURL: String = "",
         savedAt: Date = .now,
         tags: [String] = [],
         note: String = "",
@@ -26,31 +28,11 @@ final class SavedStoryRecord {
         self.headline = headline
         self.summary = summary
         self.sourceDomain = sourceDomain
+        self.sourceURL = sourceURL
         self.savedAt = savedAt
         self.tags = tags
         self.note = note
         self.isAvailableOffline = isAvailableOffline
-    }
-}
-
-@Model
-final class WatchlistRecord {
-    @Attribute(.unique) var id: UUID
-    var title: String
-    var symbol: String
-    var kindRawValue: String
-    var alertSensitivityRawValue: String
-    var isNotificationsEnabled: Bool
-    var addedAt: Date
-
-    init(item: WatchlistItem) {
-        self.id = item.id
-        self.title = item.title
-        self.symbol = item.symbol
-        self.kindRawValue = item.kind.rawValue
-        self.alertSensitivityRawValue = item.alertSensitivity.rawValue
-        self.isNotificationsEnabled = item.isNotificationsEnabled
-        self.addedAt = item.addedAt
     }
 }
 

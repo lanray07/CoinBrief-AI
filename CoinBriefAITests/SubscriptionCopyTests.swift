@@ -4,15 +4,17 @@ import XCTest
 final class SubscriptionCopyTests: XCTestCase {
     func testShippingDependenciesUseStoreKit() {
         XCTAssertTrue(AppDependencies.live.subscriptionService is StoreKitSubscriptionService)
+        XCTAssertTrue(AppDependencies.live.newsService is LiveNewsService)
+        XCTAssertTrue(AppDependencies.live.sourceLibrary is SourceStore)
         XCTAssertTrue(AppDependencies.preview.subscriptionService is MockSubscriptionService)
     }
 
     func testProCapabilitiesMatchProductBrief() {
         let capabilities = Set(ProCapability.allCases.map(\.label))
 
-        XCTAssertTrue(capabilities.contains("Unlimited summaries"))
-        XCTAssertTrue(capabilities.contains("Audio briefings"))
-        XCTAssertTrue(capabilities.contains("Custom alerts"))
+        XCTAssertTrue(capabilities.contains("Add custom RSS and Atom sources"))
+        XCTAssertTrue(capabilities.contains("Deep Dive brief mode"))
+        XCTAssertTrue(capabilities.contains("Expanded source desk and research queue"))
         XCTAssertFalse(capabilities.contains { $0.localizedCaseInsensitiveContains("trading signal") })
     }
 

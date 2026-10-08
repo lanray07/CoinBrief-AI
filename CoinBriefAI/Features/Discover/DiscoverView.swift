@@ -193,8 +193,10 @@ struct FlowLayout<Data: RandomAccessCollection, Content: View>: View where Data.
     }
 }
 
+#if DEBUG
 #Preview {
     DiscoverView()
         .environment(\.appDependencies, .preview)
 }
+#endif
 

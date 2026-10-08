@@ -1,6 +1,10 @@
+import SwiftData
 import SwiftUI
 
 struct StoryDetailView: View {
+    @Environment(\.modelContext) private var modelContext
+    @State private var isSaved = false
+
     let story: BriefStory
 
     var body: some View {
@@ -57,7 +61,7 @@ struct StoryDetailView: View {
                         if story.sources.isEmpty {
                             EmptyStateView(
                                 title: "Sources required",
-                                message: "CoinBrief AI will not show an AI summary without source evidence.",
+                                message: "CoinBrief does not display a brief without a verifiable source link.",
                                 systemImage: "link.badge.plus"
                             )
                         } else {
@@ -74,6 +78,15 @@ struct StoryDetailView: View {
                         .foregroundStyle(.secondary)
                         .fixedSize(horizontal: false, vertical: true)
                 }
+
+                StoryDetailSection(title: "Evidence record", systemImage: "doc.text.magnifyingglass") {
+                    VStack(alignment: .leading, spacing: 10) {
+                        EvidenceMetric(label: "Publisher", value: story.sources.first?.publisher ?? "Unavailable")
+                        EvidenceMetric(label: "Published", value: story.publishedAt.formatted(date: .abbreviated, time: .shortened))
+                        EvidenceMetric(label: "Classification", value: story.category.label)
+                        EvidenceMetric(label: "Verification", value: story.verificationStatus.label)
+                    }
+                }
             }
             .padding(16)
         }
@@ -81,8 +94,13 @@ struct StoryDetailView: View {
         .navigationTitle("Story")
         .navigationBarTitleDisplayMode(.inline)
         .toolbar {
-            if let url = story.primaryURL {
-                ToolbarItem(placement: .topBarTrailing) {
+            ToolbarItemGroup(placement: .topBarTrailing) {
+                Button(action: toggleSaved) {
+                    Image(systemName: isSaved ? "bookmark.fill" : "bookmark")
+                }
+                .accessibilityLabel(isSaved ? "Remove from saved research" : "Save for research")
+
+                if let url = story.primaryURL {
                     ShareLink(item: url) {
                         Image(systemName: "square.and.arrow.up")
                     }
@@ -90,6 +108,55 @@ struct StoryDetailView: View {
                 }
             }
         }
+        .task {
+            isSaved = existingRecord() != nil
+        }
+    }
+
+    private func toggleSaved() {
+        if let record = existingRecord() {
+            modelContext.delete(record)
+            isSaved = false
+        } else {
+            let record = SavedStoryRecord(
+                storyID: story.id,
+                headline: story.headline,
+                summary: story.summary,
+                sourceDomain: story.sources.first?.domain ?? "Source",
+                sourceURL: story.primaryURL?.absoluteString ?? "",
+                tags: [story.category.label],
+                isAvailableOffline: true
+            )
+            modelContext.insert(record)
+            isSaved = true
+        }
+        try? modelContext.save()
+    }
+
+    private func existingRecord() -> SavedStoryRecord? {
+        let storyID = story.id
+        var descriptor = FetchDescriptor<SavedStoryRecord>(
+            predicate: #Predicate { $0.storyID == storyID }
+        )
+        descriptor.fetchLimit = 1
+        return try? modelContext.fetch(descriptor).first
+    }
+}
+
+private struct EvidenceMetric: View {
+    let label: String
+    let value: String
+
+    var body: some View {
+        HStack(alignment: .firstTextBaseline) {
+            Text(label)
+                .foregroundStyle(.secondary)
+            Spacer()
+            Text(value)
+                .fontWeight(.semibold)
+                .multilineTextAlignment(.trailing)
+        }
+        .font(.subheadline)
     }
 }
 
@@ -148,8 +215,10 @@ private struct SourceRow: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         StoryDetailView(story: MockNewsService.demoStories[0])
     }
 }
+#endif

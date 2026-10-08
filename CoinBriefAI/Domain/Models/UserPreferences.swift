@@ -36,16 +36,14 @@ struct UserPreferences: Codable, Hashable, Sendable {
     var quietHoursStart: Int
     var quietHoursEnd: Int
     var wantsBroadenMyView: Bool
-    var prefersAudioBriefings: Bool
     var followedCategories: [StoryCategory]
 
-    static let demo = UserPreferences(
+    static let standard = UserPreferences(
         summaryMode: .standard,
         experienceLevel: .experienced,
         quietHoursStart: 22,
         quietHoursEnd: 7,
         wantsBroadenMyView: true,
-        prefersAudioBriefings: true,
         followedCategories: [.market, .regulation, .security, .defi]
     )
 }

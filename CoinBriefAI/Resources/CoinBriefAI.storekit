@@ -14,7 +14,7 @@
       "id" : "8A4F55E3-1CE6-49B4-9BC7-B223012D6E3E",
       "localizations" : [
         {
-          "description" : "Unlock unlimited source-backed crypto briefings, audio, offline access, custom alerts, and premium widgets.",
+          "description" : "Unlock custom RSS and Atom sources, Deep Dive briefings, and an expanded research queue.",
           "displayName" : "CoinBrief AI Pro",
           "locale" : "en_GB"
         }
@@ -31,7 +31,7 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "Monthly access to Pro briefings and research tools.",
+              "description" : "Monthly access to custom sources and Deep Dive research tools.",
               "displayName" : "Pro Monthly",
               "locale" : "en_GB"
             }
@@ -52,7 +52,7 @@
           "introductoryOffer" : null,
           "localizations" : [
             {
-              "description" : "Annual access to Pro briefings and research tools.",
+              "description" : "Annual access to custom sources and Deep Dive research tools.",
               "displayName" : "Pro Annual",
               "locale" : "en_GB"
             }

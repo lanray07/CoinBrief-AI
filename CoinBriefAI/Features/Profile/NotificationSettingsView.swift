@@ -136,10 +136,12 @@ private struct NotificationRuleRow: View {
     }
 }
 
+#if DEBUG
 #Preview {
     NavigationStack {
         NotificationSettingsView()
             .environment(\.appDependencies, .preview)
     }
 }
+#endif
 
